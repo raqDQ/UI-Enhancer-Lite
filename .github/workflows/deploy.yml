@@ -45,6 +45,7 @@ jobs:
       - name: Build project
         env:
           PORT: 3000
+          BASE_PATH: /
         run: pnpm run build
 
       - name: Upload artifact
