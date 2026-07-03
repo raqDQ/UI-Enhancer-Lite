@@ -76,27 +76,6 @@ export default function PageOne({ onNext }: Props) {
 
       {/* Content */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-6 px-8">
-        {/* Name badge */}
-        <motion.div
-          initial={{ scale: 0.7, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: 'backOut', delay: 0.2 }}
-          className="flex flex-col items-center"
-        >
-          <span
-            className="font-serif italic font-bold tracking-widest"
-            style={{ color: '#5C0000', fontSize: 'clamp(2.4rem, 10vw, 4rem)', lineHeight: 1.1 }}
-          >
-            Nethra
-          </span>
-          {/* Spider-man style small web divider */}
-          <div className="flex items-center gap-2 mt-1">
-            <div style={{ width: 40, height: 1, background: '#8B0000', opacity: 0.4 }} />
-            <span style={{ color: '#8B0000', fontSize: '1rem' }}>🕷️</span>
-            <div style={{ width: 40, height: 1, background: '#8B0000', opacity: 0.4 }} />
-          </div>
-        </motion.div>
-
         {/* Staggered text lines */}
         <div className="flex flex-col items-center gap-3 text-center max-w-[300px] min-h-[96px]">
           {showLine1 && (
