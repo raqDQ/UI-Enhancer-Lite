@@ -43,6 +43,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build project
+        env:
+          PORT: 3000
         run: pnpm run build
 
       - name: Upload artifact
