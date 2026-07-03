@@ -9,26 +9,36 @@ export default function PageThree() {
   const [showWhatsapp, setShowWhatsapp] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
+  // Use a low threshold (0.1) so the button shows as soon as the page starts entering view.
+  // Also add a fallback timer so it always appears even if the observer misfires.
   useEffect(() => {
+    const fallback = setTimeout(() => {
+      setInView(true);
+      setShowWhatsapp(true);
+    }, 1500);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     if (!inView) return;
-    const timer = setTimeout(() => setShowWhatsapp(true), 3000);
+    const timer = setTimeout(() => setShowWhatsapp(true), 1500);
     return () => clearTimeout(timer);
   }, [inView]);
 
