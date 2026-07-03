@@ -1,44 +1,50 @@
-# [Project name]
+# Birthday Gift
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A handcrafted, cinematic digital birthday gift — three full-screen immersive pages (Curiosity → Wonder → Warmth) built for mobile, designed to be shared via WhatsApp.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/birthday-gift run dev` — run the birthday gift app
 - `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+
+## Customization
+
+All user-facing content lives in one file: `artifacts/birthday-gift/src/config.ts`
+
+- `name` — the birthday person's name (used in constellation + heading)
+- `wish` — the personal birthday wish shown above the vinyl player
+- `caption` — short caption below the vinyl player
+- `songTitle` / `artistName` — displayed on the record label
+- `musicFile` — path or URL to the audio file (leave empty to skip music)
+- `albumArt` — optional image URL
+- `whatsappNumber` — defaults to `9003083386`
+- `whatsappMessage` — the prefilled WhatsApp reply message
 
 ## Stack
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- React + Vite (mobile-first, scroll-snap, no backend)
+- Framer Motion for all animations
+- Canvas API for constellation / particle system (Page 2)
+- CSS animations for teddy bear, vinyl record spin, floating particles
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/birthday-gift/src/config.ts` — all customizable content
+- `artifacts/birthday-gift/src/pages/PageOne.tsx` — Night sky + teddy bear
+- `artifacts/birthday-gift/src/pages/PageTwo.tsx` — Constellation + name reveal
+- `artifacts/birthday-gift/src/pages/PageThree.tsx` — Vinyl record player + WhatsApp CTA
+- `artifacts/birthday-gift/src/components/` — TeddyBear, VinylPlayer, ConstellationCanvas, particles
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
-
-## Product
-
-_Describe the high-level user-facing capabilities of this app once they exist._
+- No backend, no database — fully browser-side, shareable via a single URL
+- CSS scroll-snap (y mandatory) drives the three-page experience — one section per screen-height
+- IntersectionObserver fires each page's animation sequence when it enters the viewport
+- VinylPlayer only spins/plays when an audio file is configured; otherwise shows a toast
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
-
-## Gotchas
-
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- WhatsApp number: 9003083386 (hardcoded in config.ts)
 
 ## Pointers
 

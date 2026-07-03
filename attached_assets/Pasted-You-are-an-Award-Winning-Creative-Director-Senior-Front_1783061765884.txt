@@ -1,0 +1,521 @@
+You are an Award-Winning Creative Director, Senior Frontend Engineer, Motion Designer, UI/UX Designer and Storytelling Experience Designer.
+
+Today you are NOT building a website.
+
+You are creating a handcrafted digital birthday gift.
+
+This is an emotional interactive web application designed to make someone smile, pause, admire and remember.
+
+Imagine Apple, Pixar and an Awwwards-winning website collaborated to create a birthday experience.
+
+The result should feel magical, cinematic, premium and unforgettable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROJECT
+
+A mobile-first interactive Web App.
+
+The experience should feel like opening a beautiful app rather than browsing a website.
+
+No backend.
+
+No login.
+
+No database.
+
+Everything runs entirely in the browser.
+
+Responsive on desktop and mobile.
+
+Optimized primarily for phones because it will be opened from WhatsApp.
+
+Deployable through Replit with one public shareable link.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESIGN LANGUAGE
+
+The entire experience should feel
+
+Premium
+
+Minimal
+
+Elegant
+
+Cute
+
+Dreamy
+
+Warm
+
+Modern
+
+Magical
+
+Emotional
+
+Never childish.
+
+Never overloaded.
+
+Never generic.
+
+Every screen should have breathing space.
+
+Beautiful typography.
+
+Rounded corners.
+
+Premium gradients.
+
+Soft glows.
+
+Glassmorphism where appropriate.
+
+Elegant shadows.
+
+Luxury spacing.
+
+Every pixel should feel intentional.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ANIMATION STYLE
+
+Animation is the soul of this project.
+
+Every movement must feel meaningful.
+
+Use
+
+Smooth easing
+
+Floating particles
+
+Parallax depth
+
+Glow effects
+
+Fireflies
+
+Sparkles
+
+Twinkling stars
+
+Blur transitions
+
+Fade animations
+
+Scale animations
+
+Aurora lights
+
+Galaxy particles
+
+Constellation drawing
+
+Shooting stars
+
+Ripple interactions
+
+Soft breathing animations
+
+Everything should run smoothly at 60 FPS.
+
+Transitions should feel seamless.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+USER JOURNEY
+
+The user experiences ONLY THREE FULL-SCREEN SECTIONS.
+
+Each page has a different emotional purpose.
+
+Curiosity
+
+Wonder
+
+Warmth
+
+Nothing more.
+
+Quality over quantity.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PAGE ONE
+
+Purpose:
+
+Create curiosity.
+
+Immediately make her smile.
+
+The mood is
+
+Cute
+
+Warm
+
+Comfortable
+
+"Pookie Energy"
+
+Background
+
+Dreamy night sky.
+
+Beautiful moon.
+
+Soft clouds.
+
+Tiny glowing stars.
+
+Sparkles.
+
+Gentle floating particles.
+
+The centerpiece is an adorable teddy bear.
+
+The teddy should feel alive.
+
+Breathing animation.
+
+Blinking eyes.
+
+Tiny wave.
+
+Small floating movement.
+
+Cute bounce when tapped.
+
+Little heart pops.
+
+Tiny sparkles.
+
+The teddy should feel like a small companion welcoming her.
+
+Display beautiful elegant text.
+
+"The day the universe received one of its cutest gifts..."
+
+Pause.
+
+"The stars have been waiting for this moment."
+
+Pause.
+
+"Swipe up and let them tell the story."
+
+Everything should appear with beautiful typewriter and fade animations.
+
+The swipe indicator gently bounces.
+
+When the user swipes
+
+The camera slowly travels upward into the stars.
+
+The transition must feel cinematic.
+
+No cuts.
+
+No page jumps.
+
+One seamless movement.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⭐ PAGE TWO ⭐
+
+THIS IS THE HERO MOMENT.
+
+THIS IS THE MOST IMPORTANT PART OF THE ENTIRE EXPERIENCE.
+
+Spend most of the design effort here.
+
+Spend most of the animation effort here.
+
+Spend most of the polish here.
+
+The user should naturally stop interacting just to admire the animation.
+
+The universe becomes alive.
+
+Background
+
+Deep space.
+
+Thousands of stars.
+
+Galaxy dust.
+
+Nebulas.
+
+Aurora.
+
+Depth.
+
+Soft particles.
+
+Everything slowly moves.
+
+Nothing is static.
+
+Stars begin travelling naturally.
+
+One after another.
+
+They begin connecting.
+
+Beautiful glowing constellation lines appear.
+
+The movement should feel organic.
+
+The stars should appear to choose their positions.
+
+Eventually...
+
+The constellation slowly forms HER NAME.
+
+Pause.
+
+Every star twinkles together.
+
+Allow the user to admire it.
+
+Then...
+
+The constellation gracefully dissolves.
+
+Thousands of colorful glowing particles fill the sky.
+
+Those particles swirl together beautifully.
+
+The particles reform into an even brighter version of HER NAME made entirely from glowing colorful stars.
+
+Pause.
+
+Then—
+
+Without cutting.
+
+Without disappearing.
+
+Without restarting the animation.
+
+Her glowing star name seamlessly morphs into elegant premium typography.
+
+✨ Happy Birthday, [HER NAME] ✨
+
+The transformation should feel magical.
+
+As if the stars themselves became the birthday message.
+
+While this happens
+
+The rest of the universe slightly darkens so all attention remains on her name.
+
+After the birthday message appears
+
+The entire sky slowly brightens again.
+
+Aurora dances gently.
+
+Golden sparkles drift.
+
+Tiny hearts float upward.
+
+Soft distant fireworks bloom.
+
+Everything should feel elegant.
+
+Beautiful.
+
+Mesmerizing.
+
+Cinematic.
+
+Below the title
+
+Fade in
+
+"The universe was gifted someone truly wonderful on this day."
+
+Pause.
+
+Then
+
+"Thank you for making the world a little brighter simply by being you."
+
+Allow this entire scene to breathe.
+
+Do not rush.
+
+This page should become the memory she remembers most.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PAGE THREE
+
+The excitement slowly settles.
+
+Everything becomes calm.
+
+Warm.
+
+Peaceful.
+
+Comfortable.
+
+The background changes into a warm dreamy atmosphere.
+
+Soft pastel lighting.
+
+Floating particles.
+
+Gentle ambient animations.
+
+The centerpiece is a premium modern vinyl record player.
+
+Not a basic music player.
+
+A beautiful record-inspired interface.
+
+Above the player
+
+Leave space for my birthday wish.
+
+I will edit it later.
+
+Below the player
+
+Leave space for my short caption.
+
+Example
+
+"I wanted to dedicate this little song to you."
+
+Editable.
+
+When the user clicks the vinyl record
+
+The vinyl slowly begins spinning.
+
+The record needle gently moves into position.
+
+The dedicated song begins playing.
+
+The background softly reacts with warm breathing light.
+
+Tiny particles slowly float upward.
+
+Nothing flashy.
+
+Nothing distracting.
+
+Simply peaceful.
+
+This page is about letting the music become the final gift.
+
+After a few moments
+
+Display one elegant button.
+
+❤️ Send a Response
+
+Only when the user clicks this button
+
+Open WhatsApp.
+
+Use a configurable phone number.
+
+Open chat with a configurable prefilled message.
+
+Do not redirect automatically.
+
+Store both values inside config.js.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CUSTOMIZATION
+
+Everything should be editable from config.js.
+
+Name
+
+Birthday Text
+
+Wish
+
+Caption
+
+Song
+
+Artist
+
+Album Artwork
+
+Music File
+
+Theme Colors
+
+Fonts
+
+Images
+
+WhatsApp Number
+
+WhatsApp Message
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CODE QUALITY
+
+Write production-quality code.
+
+Use reusable components.
+
+Comment important sections.
+
+Keep CSS organized.
+
+Optimize images and animations.
+
+Ensure fast loading.
+
+No unnecessary libraries.
+
+No duplicated code.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL GOAL
+
+Do not think like a developer.
+
+Think like a Creative Director.
+
+The goal is not to impress with code.
+
+The goal is to create emotion.
+
+The journey should feel like:
+
+😊 Curiosity
+
+✨ Wonder
+
+❤️ Warmth
+
+Every transition should feel handcrafted.
+
+Every animation should have purpose.
+
+Every word should feel intentional.
+
+When she reaches the end, she should naturally smile, listen to the song, and feel that this was made especially for her.
+
+Create something that feels timeless, magical, elegant, and unforgettable.
