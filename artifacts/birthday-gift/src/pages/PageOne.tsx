@@ -1,302 +1,160 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import TeddyBear from '../components/TeddyBear';
-import { ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import SpiderWebHeart from '../components/SpiderWebHeart';
 
-// Vibrant colorful particle colors
-const PARTICLE_COLORS = [
-  '#FF6B9D', '#FF8E53', '#FFC857', '#A8EDEA', '#C78BFA',
-  '#FF9A9E', '#FFECD2', '#A18CD1', '#FBC2EB', '#84FAB0',
-  '#F093FB', '#F5576C', '#4FACFE', '#43E97B', '#FA709A',
+interface Props {
+  onNext: () => void;
+}
+
+// Fixed heart positions/sizes so they don't re-randomise on re-render
+const HEARTS = [
+  { id: 0, size: 180, x: -8, y: -5, rotate: -20, opacity: 0.9, delay: 0, dur: 7 },
+  { id: 1, size: 130, x: 62, y: -3, rotate: 15, opacity: 0.75, delay: 0.6, dur: 8.5 },
+  { id: 2, size: 90, x: 78, y: 18, rotate: -8, opacity: 0.65, delay: 1.2, dur: 6.5 },
+  { id: 3, size: 60, x: 5, y: 22, rotate: 25, opacity: 0.55, delay: 0.4, dur: 9 },
+  { id: 4, size: 200, x: -12, y: 55, rotate: -30, opacity: 0.85, delay: 0.9, dur: 7.5 },
+  { id: 5, size: 110, x: 70, y: 50, rotate: 12, opacity: 0.7, delay: 1.5, dur: 8 },
+  { id: 6, size: 75, x: 40, y: 70, rotate: -18, opacity: 0.5, delay: 0.3, dur: 10 },
+  { id: 7, size: 50, x: 85, y: 72, rotate: 5, opacity: 0.6, delay: 1.8, dur: 6 },
+  { id: 8, size: 160, x: -5, y: 78, rotate: 20, opacity: 0.8, delay: 0.7, dur: 8 },
+  { id: 9, size: 95, x: 58, y: 88, rotate: -10, opacity: 0.65, delay: 1.1, dur: 7 },
+  { id: 10, size: 55, x: 20, y: 88, rotate: 30, opacity: 0.45, delay: 2, dur: 9.5 },
 ];
 
-const PARTICLES = Array.from({ length: 45 }, (_, i) => ({
-  id: i,
-  color: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
-  size: Math.random() * 10 + 5,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  duration: Math.random() * 8 + 6,
-  delay: Math.random() * 5,
-  driftX: (Math.random() - 0.5) * 80,
-}));
-
-// Colorful rainbow stars
-const STARS = Array.from({ length: 60 }, (_, i) => ({
-  id: i,
-  color: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
-  size: Math.random() * 4 + 2,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  twinkleDuration: Math.random() * 3 + 1.5,
-  delay: Math.random() * 4,
-}));
-
-export default function PageOne() {
-  const [showText1, setShowText1] = useState(false);
-  const [showText2, setShowText2] = useState(false);
-  const [showText3, setShowText3] = useState(false);
-  const [typewriterDone, setTypewriterDone] = useState(false);
+export default function PageOne({ onNext }: Props) {
+  const [showLine1, setShowLine1] = useState(false);
+  const [showLine2, setShowLine2] = useState(false);
+  const [showLine3, setShowLine3] = useState(false);
+  const [showBtn, setShowBtn] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setShowText1(true), 800);
-    return () => clearTimeout(t1);
+    const t1 = setTimeout(() => setShowLine1(true), 600);
+    const t2 = setTimeout(() => setShowLine2(true), 2200);
+    const t3 = setTimeout(() => setShowLine3(true), 3600);
+    const t4 = setTimeout(() => setShowBtn(true), 4800);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
   }, []);
-
-  useEffect(() => {
-    if (!typewriterDone) return;
-    const t2 = setTimeout(() => setShowText2(true), 1200);
-    return () => clearTimeout(t2);
-  }, [typewriterDone]);
-
-  useEffect(() => {
-    if (!showText2) return;
-    const t3 = setTimeout(() => setShowText3(true), 1800);
-    return () => clearTimeout(t3);
-  }, [showText2]);
-
-  // Typewriter component
-  const Typewriter = ({ text, onDone }: { text: string; onDone: () => void }) => {
-    const [displayed, setDisplayed] = useState('');
-    useEffect(() => {
-      let i = 0;
-      const interval = setInterval(() => {
-        i++;
-        setDisplayed(text.substring(0, i));
-        if (i >= text.length) {
-          clearInterval(interval);
-          setTimeout(onDone, 300);
-        }
-      }, 45);
-      return () => clearInterval(interval);
-    }, [text, onDone]);
-    return <span>{displayed}<span className="animate-pulse">|</span></span>;
-  };
 
   return (
     <div
-      className="relative w-full h-[100dvh] overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #FF9A9E 0%, #FECFEF 15%, #C78BFA 35%, #A18CD1 50%, #84FAB0 65%, #FBC2EB 80%, #FF9A9E 100%)',
-      }}
+      className="relative w-full h-[100dvh] overflow-hidden select-none"
+      style={{ background: '#FAF5EE' }}
     >
-      {/* Animated background gradient overlay for depth */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{
-          background: [
-            'radial-gradient(ellipse at 20% 30%, rgba(255,107,157,0.4) 0%, transparent 60%)',
-            'radial-gradient(ellipse at 80% 70%, rgba(199,139,250,0.5) 0%, transparent 60%)',
-            'radial-gradient(ellipse at 50% 20%, rgba(132,250,176,0.4) 0%, transparent 60%)',
-            'radial-gradient(ellipse at 20% 30%, rgba(255,107,157,0.4) 0%, transparent 60%)',
-          ]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Soft white overlay for dreamy feel */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'rgba(255,255,255,0.12)' }}
-      />
-
-      {/* Rainbow stars */}
-      {STARS.map((star) => (
+      {/* Floating spider-web hearts */}
+      {HEARTS.map((h) => (
         <motion.div
-          key={`star-${star.id}`}
-          className="absolute rounded-full pointer-events-none"
+          key={h.id}
+          className="absolute pointer-events-none"
           style={{
-            width: star.size,
-            height: star.size,
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            backgroundColor: star.color,
-            boxShadow: `0 0 ${star.size * 2}px ${star.color}, 0 0 ${star.size * 4}px ${star.color}88`,
-          }}
-          animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.3, 0.8] }}
-          transition={{
-            duration: star.twinkleDuration,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: star.delay,
-          }}
-        />
-      ))}
-
-      {/* Vibrant colorful floating particles */}
-      {PARTICLES.map((p) => (
-        <motion.div
-          key={`particle-${p.id}`}
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            backgroundColor: p.color,
-            boxShadow: `0 0 ${p.size}px ${p.color}88`,
-            filter: 'blur(0.5px)',
+            left: `${h.x}%`,
+            top: `${h.y}%`,
+            rotate: h.rotate,
           }}
           animate={{
-            y: [0, -120, 0],
-            x: [0, p.driftX, 0],
-            opacity: [0, 0.9, 0],
+            y: [0, -18, 0],
+            rotate: [h.rotate, h.rotate + 6, h.rotate - 4, h.rotate],
           }}
           transition={{
-            duration: p.duration,
+            duration: h.dur,
             repeat: Infinity,
             ease: 'easeInOut',
-            delay: p.delay,
-          }}
-        />
-      ))}
-
-      {/* Colorful blob accents */}
-      <div
-        className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(255,107,157,0.5), transparent 70%)',
-          filter: 'blur(40px)',
-        }}
-      />
-      <div
-        className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(132,250,176,0.4), transparent 70%)',
-          filter: 'blur(50px)',
-        }}
-      />
-      <div
-        className="absolute top-[30%] right-[-15%] w-[50%] h-[50%] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(199,139,250,0.45), transparent 70%)',
-          filter: 'blur(45px)',
-        }}
-      />
-
-      {/* ✨ Sparkle bursts */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={`sparkle-${i}`}
-          className="absolute text-2xl pointer-events-none select-none"
-          style={{
-            left: `${10 + i * 11}%`,
-            top: `${15 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            scale: [0.6, 1.3, 0.6],
-            opacity: [0.4, 1, 0.4],
-            rotate: [0, 20, -20, 0],
-          }}
-          transition={{
-            duration: 2 + i * 0.4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: i * 0.3,
+            delay: h.delay,
           }}
         >
-          {['✨', '🌟', '💫', '⭐', '✨', '🌟', '💫', '⭐'][i]}
+          <SpiderWebHeart size={h.size} opacity={h.opacity} />
         </motion.div>
       ))}
 
-      {/* Main Content */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-6 px-4">
+      {/* Subtle cream radial centre glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,240,230,0.85) 0%, transparent 80%)',
+        }}
+      />
 
-        {/* Teddy Bear with vibrant glow behind */}
-        <div className="relative flex items-center justify-center">
-          {/* Vibrant rainbow glow ring behind teddy */}
-          <motion.div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              width: 260,
-              height: 260,
-              background: 'conic-gradient(from 0deg, #FF6B9D, #FFC857, #84FAB0, #A18CD1, #FF6B9D)',
-              filter: 'blur(25px)',
-              opacity: 0.5,
-            }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          />
-          {/* White glow center for contrast */}
-          <div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              width: 200,
-              height: 200,
-              background: 'radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%)',
-              filter: 'blur(15px)',
-            }}
-          />
-          <TeddyBear />
-        </div>
-
-        {/* Text Sequence — white text with colorful shadow for readability */}
-        <div className="flex flex-col items-center text-center space-y-4 max-w-[320px] min-h-[130px]">
-          {showText1 && (
-            <motion.p
-              className="font-serif italic text-white text-lg md:text-xl leading-snug"
-              style={{
-                textShadow: '0 2px 12px rgba(100,0,60,0.4), 0 1px 3px rgba(0,0,0,0.3)',
-              }}
-            >
-              <Typewriter
-                text="The day the universe received one of its cutest gifts..."
-                onDone={() => setTypewriterDone(true)}
-              />
-            </motion.p>
-          )}
-
-          {showText2 && (
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2 }}
-              className="font-serif italic text-white/95 text-lg md:text-xl leading-snug"
-              style={{ textShadow: '0 2px 10px rgba(80,0,100,0.35), 0 1px 3px rgba(0,0,0,0.25)' }}
-            >
-              The stars have been waiting for this moment.
-            </motion.p>
-          )}
-
-          {showText3 && (
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2 }}
-              className="font-serif italic text-white/90 text-base md:text-lg"
-              style={{ textShadow: '0 2px 10px rgba(80,0,100,0.3), 0 1px 3px rgba(0,0,0,0.2)' }}
-            >
-              Swipe up and let them tell the story.
-            </motion.p>
-          )}
-        </div>
-      </div>
-
-      {/* Swipe Indicator */}
-      <AnimatePresence>
-        {showText3 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute bottom-[5dvh] left-1/2 -translate-x-1/2 flex flex-col items-center"
-            style={{ color: 'rgba(255,255,255,0.85)' }}
+      {/* Content */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-6 px-8">
+        {/* Name badge */}
+        <motion.div
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: 'backOut', delay: 0.2 }}
+          className="flex flex-col items-center"
+        >
+          <span
+            className="font-serif italic font-bold tracking-widest"
+            style={{ color: '#5C0000', fontSize: 'clamp(2.4rem, 10vw, 4rem)', lineHeight: 1.1 }}
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+            Nethra
+          </span>
+          {/* Spider-man style small web divider */}
+          <div className="flex items-center gap-2 mt-1">
+            <div style={{ width: 40, height: 1, background: '#8B0000', opacity: 0.4 }} />
+            <span style={{ color: '#8B0000', fontSize: '1rem' }}>🕷️</span>
+            <div style={{ width: 40, height: 1, background: '#8B0000', opacity: 0.4 }} />
+          </div>
+        </motion.div>
+
+        {/* Staggered text lines */}
+        <div className="flex flex-col items-center gap-3 text-center max-w-[300px] min-h-[96px]">
+          {showLine1 && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="font-serif italic"
+              style={{ color: '#5C0000', fontSize: '1.05rem', lineHeight: 1.6 }}
             >
-              <ChevronUp className="w-8 h-8 drop-shadow-lg" />
-            </motion.div>
-            <span
-              className="font-sans text-xs tracking-widest uppercase mt-1"
-              style={{ textShadow: '0 1px 6px rgba(0,0,0,0.3)' }}
+              With great love comes a great birthday…
+            </motion.p>
+          )}
+          {showLine2 && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="font-serif italic"
+              style={{ color: '#7A1010', fontSize: '1rem', lineHeight: 1.6, opacity: 0.85 }}
             >
-              Swipe Up
-            </span>
-          </motion.div>
+              The universe conspired to put you here.
+            </motion.p>
+          )}
+          {showLine3 && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="font-serif italic"
+              style={{ color: '#8B0000', fontSize: '0.9rem', opacity: 0.75 }}
+            >
+              And we're all so glad it did. ❤️
+            </motion.p>
+          )}
+        </div>
+
+        {/* Next button */}
+        {showBtn && (
+          <motion.button
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            onClick={onNext}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.94 }}
+            className="mt-2 px-10 py-3 rounded-full font-sans font-semibold tracking-wider text-sm shadow-lg"
+            style={{
+              background: 'linear-gradient(135deg, #8B0000, #C0392B)',
+              color: '#fff',
+              boxShadow: '0 4px 24px rgba(139,0,0,0.35), 0 1px 4px rgba(0,0,0,0.18)',
+              border: '1.5px solid rgba(255,255,255,0.18)',
+            }}
+          >
+            Open your gift →
+          </motion.button>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }

@@ -1,51 +1,37 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { config } from '../config';
 import VinylPlayer from '../components/VinylPlayer';
+import SpiderWebHeart from '../components/SpiderWebHeart';
 
-export default function PageThree() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
+interface Props {
+  isActive: boolean;
+}
+
+// Decorative hearts in corners
+const CORNER_HEARTS = [
+  { id: 0, size: 100, x: -4, y: -3, rotate: -25, opacity: 0.55 },
+  { id: 1, size: 70,  x: 78, y: -2, rotate: 18,  opacity: 0.45 },
+  { id: 2, size: 85,  x: -3, y: 80, rotate: 30,  opacity: 0.5  },
+  { id: 3, size: 60,  x: 82, y: 82, rotate: -15, opacity: 0.4  },
+];
+
+export default function PageThree({ isActive }: Props) {
+  const [showContent, setShowContent] = useState(false);
   const [showWhatsapp, setShowWhatsapp] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
-  // Use a low threshold (0.1) so the button shows as soon as the page starts entering view.
-  // Also add a fallback timer so it always appears even if the observer misfires.
   useEffect(() => {
-    const fallback = setTimeout(() => {
-      setInView(true);
-      setShowWhatsapp(true);
-    }, 1500);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      clearTimeout(fallback);
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!inView) return;
-    const timer = setTimeout(() => setShowWhatsapp(true), 1500);
-    return () => clearTimeout(timer);
-  }, [inView]);
+    if (!isActive) return;
+    const t1 = setTimeout(() => setShowContent(true), 300);
+    const t2 = setTimeout(() => setShowWhatsapp(true), 2000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [isActive]);
 
   useEffect(() => {
     const handleToast = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      setToastMessage(customEvent.detail);
+      const ce = e as CustomEvent;
+      setToastMessage(ce.detail);
       setTimeout(() => setToastMessage(''), 3000);
     };
     window.addEventListener('show-toast', handleToast);
@@ -53,69 +39,73 @@ export default function PageThree() {
   }, []);
 
   const handleWhatsapp = () => {
-    window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappMessage)}`, '_blank');
+    window.open(
+      `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappMessage)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full h-[100dvh] overflow-hidden bg-gradient-to-b from-[#FFF8F0] to-[#FFE8EE]"
+    <div
+      className="relative w-full h-[100dvh] overflow-hidden"
+      style={{ background: '#FAF5EE' }}
     >
-      {/* Ambient floating particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {/* Corner decorative hearts */}
+      {CORNER_HEARTS.map((h) => (
         <motion.div
-          key={`dust-${i}`}
-          className="absolute w-2 h-2 bg-white/60 rounded-full blur-[1px]"
-          initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 400),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-          }}
-          animate={{
-            y: [null, Math.random() * -100 - 50],
-            x: [null, `calc(${Math.random() * 50 - 25}px)`]
-          }}
-          transition={{
-            duration: Math.random() * 15 + 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+          key={h.id}
+          className="absolute pointer-events-none"
+          style={{ left: `${h.x}%`, top: `${h.y}%`, rotate: h.rotate }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 7 + h.id, repeat: Infinity, ease: 'easeInOut', delay: h.id * 0.5 }}
+        >
+          <SpiderWebHeart size={h.size} opacity={h.opacity} />
+        </motion.div>
       ))}
 
-      {/* Central Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full bg-white/40 blur-[80px] pointer-events-none" />
+      {/* Soft centre glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255,240,230,0.9) 0%, transparent 80%)',
+        }}
+      />
 
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-[12dvh] px-6">
-        
-        {/* Top Text */}
-        <motion.div 
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-[8dvh] px-6">
+        {/* Wish text */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="text-center max-w-[340px]"
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="text-center max-w-[320px]"
         >
-          <p className="font-serif italic text-xl md:text-2xl text-[#3D1A1A] leading-relaxed drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
+          <p
+            className="font-serif italic leading-relaxed"
+            style={{ color: '#5C0000', fontSize: 'clamp(1rem, 4.5vw, 1.2rem)' }}
+          >
             "{config.wish}"
           </p>
         </motion.div>
 
-        {/* Centerpiece Player */}
+        {/* Vinyl player */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.9 }}
-          transition={{ duration: 1.5, delay: 1 }}
+          animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.9 }}
+          transition={{ duration: 1.4, delay: 0.6 }}
           className="w-full"
         >
           <VinylPlayer />
         </motion.div>
 
-        {/* Bottom Text & CTA */}
-        <div className="flex flex-col items-center space-y-8 mt-8">
+        {/* Caption + WhatsApp button */}
+        <div className="flex flex-col items-center gap-5">
           <motion.p
             initial={{ opacity: 0 }}
-            animate={{ opacity: inView ? 1 : 0 }}
-            transition={{ duration: 1.5, delay: 2 }}
-            className="font-serif italic text-lg text-[#5D3A3A]/80 text-center"
+            animate={{ opacity: showContent ? 0.75 : 0 }}
+            transition={{ duration: 1.2, delay: 1 }}
+            className="font-serif italic text-center"
+            style={{ color: '#7A1010', fontSize: '1rem' }}
           >
             {config.caption}
           </motion.p>
@@ -123,12 +113,19 @@ export default function PageThree() {
           <AnimatePresence>
             {showWhatsapp && (
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
+                key="wa-btn"
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.94 }}
                 onClick={handleWhatsapp}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 text-white font-sans font-bold tracking-wide shadow-[0_4px_20px_rgba(244,63,94,0.4)]"
+                className="px-9 py-3 rounded-full font-sans font-semibold tracking-wide text-sm shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #8B0000, #C0392B)',
+                  color: '#fff',
+                  boxShadow: '0 4px 22px rgba(139,0,0,0.38), 0 1px 4px rgba(0,0,0,0.18)',
+                  border: '1.5px solid rgba(255,255,255,0.18)',
+                }}
                 data-testid="whatsapp-button"
               >
                 Send a Response ❤️
@@ -138,7 +135,7 @@ export default function PageThree() {
         </div>
       </div>
 
-      {/* Toast Message */}
+      {/* Toast */}
       <AnimatePresence>
         {toastMessage && (
           <motion.div
