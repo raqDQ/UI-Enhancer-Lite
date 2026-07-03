@@ -143,10 +143,6 @@ function useMeteorCanvas(active: boolean) {
         }
         const tailX = m.x - (m.vx / Math.hypot(m.vx, m.vy)) * m.len;
         const tailY = m.y - (m.vy / Math.hypot(m.vx, m.vy)) * m.len;
-        const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
-        grad.addColorStop(0, 'rgba(255,255,255,0)');
-        grad.addColorStop(1, m.color.replace(')', `,${m.alpha})`).replace('rgb', 'rgba').replace('#', 'rgba(') + ')');
-        // simpler approach
         ctx.beginPath();
         ctx.moveTo(tailX, tailY);
         ctx.lineTo(m.x, m.y);
