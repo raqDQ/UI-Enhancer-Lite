@@ -35,7 +35,8 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
           cache: 'pnpm'
           cache-dependency-path: artifacts/birthday-gift/package.json
 
