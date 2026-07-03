@@ -40,9 +40,11 @@ jobs:
           cache-dependency-path: artifacts/birthday-gift/package.json
 
       - name: Install dependencies
+        working-directory: artifacts/birthday-gift
         run: pnpm install --no-frozen-lockfile
 
       - name: Build project
+        working-directory: artifacts/birthday-gift
         env:
           PORT: 3000
           BASE_PATH: /UI-Enhancer-Lite/
