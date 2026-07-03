@@ -86,7 +86,7 @@ export default function PageOne({ onNext }: Props) {
               className="font-serif italic"
               style={{ color: '#5C0000', fontSize: '1.05rem', lineHeight: 1.6 }}
             >
-              With great love comes a great birthday…
+              Among billions of stars, today, one shines a little brighter.
             </motion.p>
           )}
           {showLine2 && (
@@ -130,7 +130,7 @@ export default function PageOne({ onNext }: Props) {
               border: '1.5px solid rgba(255,255,255,0.18)',
             }}
           >
-            Open your gift →
+            🌙 Let's See
           </motion.button>
         )}
       </div>
