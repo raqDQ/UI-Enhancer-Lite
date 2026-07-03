@@ -7,7 +7,7 @@ export const config = {
   songTitle: 'Happy Birthday',
   artistName: 'To You',
   albumArt: '',
-  musicFile: '',
+  musicFile: `${import.meta.env.BASE_URL}song.mp3`,
   whatsappNumber: '9003083386',
   whatsappMessage: 'OMG this made my heart melt 🥹💕 Thank you so much!',
   themeAccent: '#8B0000',
